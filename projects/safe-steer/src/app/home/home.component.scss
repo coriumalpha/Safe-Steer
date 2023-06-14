@@ -1,15 +1,34 @@
 @use '@angular/material' as mat;
 @import '@angular/material/theming';
 
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.fullscreen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #24243e; /* fallback for old browsers */
+    background: -webkit-linear-gradient(0.85turn, #24243e, #302b63, #7b1fa2);
+    background: linear-gradient(0.85turn, #24243e, #302b63, #7b1fa2);
+}
+
+.documentation {
+    min-height: 100vh;
+}
+
 .main-title {
+    align-self: flex-start;
     font-family: Roboto;
     font-weight: 400;
     font-size: 10rem;
     line-height: 1;
     letter-spacing: normal;
     text-transform: uppercase;
-    background: -webkit-linear-gradient(0.25turn, #69f0ae, #4de9ee, #69f0ae);
-    background: linear-gradient(0.25turn, #69f0ae, #4de9ee, #69f0ae);
+    background: -webkit-linear-gradient(0.25turn, #69f0ae, #4de9ee);
+    background: linear-gradient(0.25turn, #69f0ae, #4de9ee);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -18,17 +37,36 @@
     padding-top: 7vh;
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 64px);
+.highlight {
+    background: -webkit-linear-gradient(0.25turn, #69f0ae, #4de9ee);
+    background: linear-gradient(0.25turn, #69f0ae, #4de9ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    align-self: flex-start;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    background: -webkit-linear-gradient(0.3turn, #4de9ee, #c700ff);
+    background: linear-gradient(0.3turn, #4de9ee, #c700ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: left;
+    padding-left: 5vw;
+    padding-top: 1em;
 }
 
 .actions {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    width: 100%;
     margin-top: 4em;
     padding-left: 5vw;
 
@@ -45,9 +83,9 @@
     0% { opacity: 0; }
     50% { opacity: 1; }
     100% { opacity: 0; }
-  }
+}
   
-  .main-title::after {
+.main-title::after {
     content: "_";
     animation: blink 1s infinite;
-  }
+}
