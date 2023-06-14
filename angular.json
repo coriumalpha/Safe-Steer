@@ -30,6 +30,7 @@
               "projects/safe-steer/src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/purple-green.css",
               "projects/safe-steer/src/styles.sass"
             ],
             "scripts": []
@@ -93,6 +94,7 @@
               "projects/safe-steer/src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/purple-green.css",
               "projects/safe-steer/src/styles.sass"
             ],
             "scripts": []
