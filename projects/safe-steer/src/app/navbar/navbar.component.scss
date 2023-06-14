@@ -1,0 +1,11 @@
+button {
+    &:not(:last-child) {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    &.active {
+        background-color: #69f0ae;
+        color: #000000;
+    }   
+}
