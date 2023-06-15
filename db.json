@@ -1,0 +1,19 @@
+{
+  "skills": [
+    {
+      "id": 1,
+      "title": "Skill 1",
+      "learningPath": "Mechanics"
+    },
+    {
+      "id": 2,
+      "title": "Skill 2",
+      "learningPath": "Attention"
+    },
+    {
+      "id": 3,
+      "title": "Skill 3",
+      "learningPath": "Efficiency"
+    }
+  ]
+}
