@@ -8,7 +8,7 @@
       <span class="highlight">SafeSteer</span> is a program that helps you<br> to improve your driving skills.
     </span>    
     <div class="actions">
-      <button mat-raised-button color="primary">
+      <button mat-raised-button color="primary" (click)="scrollToDocumentation()">
         <mat-icon>description</mat-icon>
         Docs
       </button>
@@ -18,7 +18,7 @@
       </button>
     </div>
   </div>
-  <div class="documentation">
+  <div class="documentation" id="documentation">
     <div class="main-title">
       NOT FULL SCREEN
     </div>

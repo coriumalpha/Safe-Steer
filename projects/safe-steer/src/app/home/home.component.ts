@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
+  scrollToDocumentation() {
+    const element = document.getElementById('documentation');
+  
+    if (element) {
+      element.scrollIntoView({behavior: "smooth"});
+    }
+  }
 }
