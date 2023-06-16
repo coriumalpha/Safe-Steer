@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Skill } from '../models/skill.model';
-import { SkillQuery } from '../querys/skill.query';
-import { SkillService } from '../services/skill.service';
+import { Skill } from '../../models/skill.model';
+import { SkillService } from '../../services/skill.service';
+import { SkillQuery } from '../../querys/skill.query';
+
 
 @Component({
   selector: 'app-demo',

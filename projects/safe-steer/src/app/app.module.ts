@@ -7,19 +7,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { HomeComponent } from './home/home.component';
-import { DemoComponent } from './demo/demo.component';
+import { MatCardModule } from '@angular/material/card'; 
+import { HomeComponent } from './pages/home/home.component';
+import { DemoComponent } from './pages/demo/demo.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { SkillCardComponent } from './components/skill-card/skill-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DemoComponent,
-    NavbarComponent
+    NavbarComponent,
+    SkillCardComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatCardModule,
     HttpClientModule,
     environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
