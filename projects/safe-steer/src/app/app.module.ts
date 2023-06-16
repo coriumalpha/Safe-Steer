@@ -12,6 +12,7 @@ import { DemoComponent } from './demo/demo.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { environment } from '../environments/environment';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    HttpClientModule,
     environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
   providers: [],

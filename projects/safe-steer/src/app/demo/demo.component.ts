@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-// import { Skill } from '../models/skill.model';
-// import { SkillService } from '../services/skill.service';
-// import { SkillQuery } from '../querys/skill.query';
+import { Skill } from '../models/skill.model';
+import { SkillQuery } from '../querys/skill.query';
+import { SkillService } from '../services/skill.service';
 
 @Component({
   selector: 'app-demo',
@@ -10,12 +10,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./demo.component.scss']
 })
 export class DemoComponent {
-  //skills$!: Observable<Skill[]>;
+  skills$!: Observable<Skill[]>;
 
-  //constructor(private skillService: SkillService, private skillQuery: SkillQuery) {}
+  constructor(private skillService: SkillService, private skillQuery: SkillQuery) {}
 
   ngOnInit() {
-    // this.skillService.get().subscribe();
-    // this.skills$ = this.skillQuery.selectAll();
+    this.skillService.get().subscribe();
+    this.skills$ = this.skillQuery.selectAll();
   }
 }
