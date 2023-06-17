@@ -17,6 +17,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { SkillCardComponent } from './components/skill-card/skill-card.component';
 import { NewItemCardComponent } from './components/new-item-card/new-item-card.component';
 import { TruncatedTextComponent } from './shared/truncated-text/truncated-text.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SkillDialogComponent } from './components/skill-dialog/skill-dialog.component';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,8 @@ import { TruncatedTextComponent } from './shared/truncated-text/truncated-text.c
     SkillCardComponent,
     NewItemCardComponent,
     TruncatedTextComponent,
+    SkillDialogComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +42,9 @@ import { TruncatedTextComponent } from './shared/truncated-text/truncated-text.c
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    MatChipsModule,
     HttpClientModule,
+    MatDialogModule,
     environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
   providers: [],

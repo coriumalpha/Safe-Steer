@@ -1,7 +1,10 @@
 mat-card {
-    height: 176px;
-    background-color: transparentize(#4de9ee, 0.95);
-    border-color: transparentize(#4de9ee, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background-color: transparentize(#4de9ee, 0.97);
+    border-color: transparentize(#4de9ee, 0.75);
     border-width: 2px;
     cursor: pointer;
     transition: background-color 0.2s, border-color 0.2s;
@@ -14,6 +17,12 @@ mat-card {
             color: #4de9ee;
         }
     }
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .custom-card {
@@ -31,7 +40,7 @@ mat-card {
     align-items: center;
     justify-content: center;
     height: 100%;
-    color: transparentize(#4de9ee, 0.6);
+    color: transparentize(#4de9ee, 0.75);
     transition: color 0.2s;
 }
 

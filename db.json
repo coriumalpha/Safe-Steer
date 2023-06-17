@@ -3,36 +3,36 @@
     {
       "id": 1,
       "title": "Efficiency",
-      "learningPath": "Efficiency",
-      "imageName": "dreamwave-car",
+      "learningPath": "Driving Skills",
+      "imageName": "wave",
       "description": "Learn tricks and tips on how to drive for better energy efficiency, whether it's electric or combustion. Improve your fuel economy and reduce your environmental impact with this course."
     },
     {
       "id": 2,
       "title": "Mechanics",
-      "learningPath": "Mechanics",
-      "imageName": "dreamwave-car",
+      "learningPath": "Vehicle knowledge",
+      "imageName": "engine",
       "description": "Understand mechanical aspects of the car like Rev Matching, torque, gear ratios, and more. Get a deeper understanding of how your car works, which can help you take better care of it and resolve issues when they arise."
     },
     {
       "id": 3,
       "title": "Attention and Safety",
-      "learningPath": "Attention",
-      "imageName": "dreamwave-car",
+      "learningPath": "Attention and Safety",
+      "imageName": "headlight",
       "description": "Learn to pay attention and maintain safety, with fun exercises like a braking calculation system: Try to lift your foot off the accelerator at the exact moment to stop the car as close to the red light as possible without going over it."
     },
     {
       "id": 4,
       "title": "Dynamic Driving",
-      "learningPath": "Dynamics",
-      "imageName": "dreamwave-car",
+      "learningPath": "Driving Skills",
+      "imageName": "brake-discs",
       "description": "Learn how to efficiently handle your vehicle under various driving conditions. This includes driving on wet or slippery roads, handling steering in tight corners, and techniques for smooth driving."
     },
     {
       "id": 5,
       "title": "Control Recovery",
-      "learningPath": "Control",
-      "imageName": "dreamwave-car",
+      "learningPath": "Driving Skills",
+      "imageName": "car-controls",
       "description": "Learn how to regain control of the vehicle in emergency situations. This includes recovering control after a skid, the correct maneuver during a tire blowout, and how to handle situations of abrupt braking."
     }
   ]
