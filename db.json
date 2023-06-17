@@ -2,18 +2,38 @@
   "skills": [
     {
       "id": 1,
-      "title": "Skill 1",
-      "learningPath": "Mechanics"
+      "title": "Efficiency",
+      "learningPath": "Efficiency",
+      "imageName": "dreamwave-car",
+      "description": "Learn tricks and tips on how to drive for better energy efficiency, whether it's electric or combustion. Improve your fuel economy and reduce your environmental impact with this course."
     },
     {
       "id": 2,
-      "title": "Skill 2",
-      "learningPath": "Attention"
+      "title": "Mechanics",
+      "learningPath": "Mechanics",
+      "imageName": "dreamwave-car",
+      "description": "Understand mechanical aspects of the car like Rev Matching, torque, gear ratios, and more. Get a deeper understanding of how your car works, which can help you take better care of it and resolve issues when they arise."
     },
     {
       "id": 3,
-      "title": "Skill 3",
-      "learningPath": "Efficiency"
+      "title": "Attention and Safety",
+      "learningPath": "Attention",
+      "imageName": "dreamwave-car",
+      "description": "Learn to pay attention and maintain safety, with fun exercises like a braking calculation system: Try to lift your foot off the accelerator at the exact moment to stop the car as close to the red light as possible without going over it."
+    },
+    {
+      "id": 4,
+      "title": "Dynamic Driving",
+      "learningPath": "Dynamics",
+      "imageName": "dreamwave-car",
+      "description": "Learn how to efficiently handle your vehicle under various driving conditions. This includes driving on wet or slippery roads, handling steering in tight corners, and techniques for smooth driving."
+    },
+    {
+      "id": 5,
+      "title": "Control Recovery",
+      "learningPath": "Control",
+      "imageName": "dreamwave-car",
+      "description": "Learn how to regain control of the vehicle in emergency situations. This includes recovering control after a skid, the correct maneuver during a tire blowout, and how to handle situations of abrupt braking."
     }
   ]
 }

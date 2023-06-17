@@ -1,11 +1,16 @@
+.page-container {
+    padding: 20px;
+    min-height: calc(100vh - 64px);
+    box-sizing: border-box;
+}
+  
 .card-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-  }
+    justify-content: space-around;
+}
   
-  .app-skill-card {
-    flex-basis: calc(50% - 20px);
+.app-skill-card {
+    flex-basis: calc(33% - 20px);
     margin-bottom: 20px;
-  }
-  
+}

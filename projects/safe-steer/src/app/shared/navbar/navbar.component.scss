@@ -1,0 +1,32 @@
+button {
+    &:not(:last-child) {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    &.active {
+        background-color: #69f0ae;
+        color: #000000;
+    }   
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    background-color: transparent;
+}
+
+.highlight-accent {
+    background: -webkit-linear-gradient(to right, #4de9ee 55%, #69f0ae);
+    background: linear-gradient(to right, #4de9ee 55%, #69f0ae);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+  
+.highlight-accent-container {
+    display: inline-block;
+}
+  

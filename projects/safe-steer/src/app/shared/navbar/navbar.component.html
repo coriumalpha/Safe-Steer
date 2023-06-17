@@ -1,5 +1,7 @@
-<mat-toolbar *ngIf="!homeActive" color="primary">
-    <span>SteerSafe</span>
+<mat-toolbar *ngIf="!homeActive">
+    <span class="highlight-accent-container">
+        <span class="highlight-accent">SafeSteer</span>
+    </span>
     <span class="spacer"></span>
     <button mat-button routerLink="/" [class.active]="homeActive">Home</button>
     <button mat-button routerLink="/demo" routerLinkActive="active">Demo</button>

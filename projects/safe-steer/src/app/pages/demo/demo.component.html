@@ -1,3 +1,6 @@
-<div class="card-container">
-  <app-skill-card class="app-skill-card" *ngFor="let skill of skills$ | async" [skill]="skill"></app-skill-card>
+<div class="page-container bg-dreamwave">
+  <div class="card-container">
+    <app-skill-card class="app-skill-card" *ngFor="let skill of skills$ | async" [skill]="skill"></app-skill-card>
+    <app-new-item-card class="app-skill-card"></app-new-item-card>
+  </div>
 </div>
