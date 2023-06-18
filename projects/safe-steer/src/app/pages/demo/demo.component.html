@@ -31,8 +31,11 @@
 
     <div class="card-container">
       <app-skill-card class="app-skill-card" *ngFor="let skill of skills$ | async" [skill]="skill"
-        (openDialogEvent)="openDialog($event)"></app-skill-card>
-      <app-new-item-card class="app-skill-card" (click)="addLearningPath()"></app-new-item-card>
+        [isInLearningPath]="skillInLearningPath(skill)" (openDialogEvent)="openDialog(skill)"
+        (click)="addToLearningPath(skill)" (click)="removeFromLearningPath(skill)">
+      </app-skill-card>
+
+      <app-new-item-card class="app-skill-card" (click)="newLearningPath()"></app-new-item-card>
     </div>
   </div>
 </div>

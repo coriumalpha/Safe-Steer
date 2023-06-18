@@ -67,6 +67,17 @@ button.action {
     }
 }
 
+button.delete {
+    background: -webkit-linear-gradient(to left, #5a1677 50%, #221f47);
+    background: linear-gradient(to left, #5a1677 50%, #221f47);
+    color: #4de9ee;
+
+    &:hover {
+        filter: brightness(1.2);
+        color: #69f0ae;
+    }
+}
+
 .inner-image {
     position: absolute;
     right: 0;

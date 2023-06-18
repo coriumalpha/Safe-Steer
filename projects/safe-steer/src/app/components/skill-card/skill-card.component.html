@@ -1,5 +1,5 @@
-<div class="card-container">
-  <mat-card class="bg-dreamwave-accent" (click)="openDialog()">
+<div class="card-container" (click)="openDialog($event)">
+    <mat-card class="bg-dreamwave-accent">
     <mat-card-header>
       <mat-card-title class="highlight">{{ skill.title }}</mat-card-title>
       <mat-card-subtitle class="highlight">{{ skill.category }}</mat-card-subtitle>
@@ -12,7 +12,8 @@
     </mat-card-content>
     
     <mat-card-actions>
-      <button mat-button class="action"><mat-icon>add</mat-icon>ADD TO PATH</button>
+      <button *ngIf="!isInLearningPath" mat-button class="action" (click)="addToPath($event)"><mat-icon>add</mat-icon>ADD TO PATH</button>
+      <button *ngIf="isInLearningPath" mat-button class="delete" (click)="removeFromPath($event)"><mat-icon>delete</mat-icon>REMOVE FROM PATH</button>
     </mat-card-actions>
     
     <img [src]="getImagePath(skill.imageName)" class="inner-image">

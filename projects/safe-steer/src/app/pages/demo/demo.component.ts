@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, combineLatest, filter, switchMap, take, tap } from 'rxjs';
+import { Observable, combineLatest, filter, of, switchMap, take, tap } from 'rxjs';
 import { Skill } from '../../models/skill.model';
 import { SkillService } from '../../services/skill.service';
 import { SkillQuery } from '../../querys/skill.query';
@@ -20,6 +20,7 @@ import { filterNilValue } from '@datorama/akita';
 })
 
 export class DemoComponent {
+  userLearningPath: number = 1;
   skills$!: Observable<Skill[]>;
   categories$!: Observable<string[]>;
   selectedCategory$!: Observable<string | null>;
@@ -40,7 +41,7 @@ export class DemoComponent {
     this.selectedCategory$ = this.skillQuery.selectSelectedCategory$;
 
     this.learningPathService.get().subscribe(() => {
-      this.learningPath$ = this.learningPathQuery.selectEntity(1);
+      this.learningPath$ = this.learningPathQuery.selectEntity(this.userLearningPath);
       this.learningPathSkills$ = this.learningPath$.pipe(
         filter((learningPath): learningPath is LearningPath => learningPath !== undefined),
         switchMap(learningPath => {
@@ -54,10 +55,10 @@ export class DemoComponent {
 
   }
 
-  onCategorySelectionChange(learningPath: string) {
+  onCategorySelectionChange(category: string) {
     //TODO: Migrate to service
-    this.skillQuery.selectSelectedCategory$.pipe(take(1)).subscribe(selectedLearningPath => {
-      this.skillStore.update({ ui: { selectedLearningPath: (selectedLearningPath === learningPath) ? null : learningPath } });
+    this.skillQuery.selectSelectedCategory$.pipe(take(1)).subscribe(selectedCategory => {
+      this.skillStore.update({ ui: { selectedCategory: (selectedCategory === category) ? null : category } });
     });
   }
 
@@ -72,7 +73,7 @@ export class DemoComponent {
     });
   }
 
-  addLearningPath(): void {
+  newLearningPath(): void {
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
       width: '600px',
       data: 'This functionallity is not implemented yet.'
@@ -82,4 +83,38 @@ export class DemoComponent {
       //TODO: Remove if not needed
     });
   }
+
+  addToLearningPath(skill: Skill): void {
+    this.learningPath$.pipe(
+      take(1),
+      switchMap(learningPath => {
+        if (learningPath) {
+          return this.learningPathService.addSkillToPath(learningPath, skill.id);
+        } else {
+          return of(undefined);
+        }
+      })
+    ).subscribe(() => {
+      // Handle success
+    }, error => {
+      // Handle error
+    });
+  }
+  
+  removeFromLearningPath(skill: Skill): void {
+    this.learningPathService.removeSkillFromPath(this.userLearningPath, skill.id).subscribe(() => {
+    });
+  }
+
+  skillInLearningPath(skill: Skill): boolean {
+    let skillInPath = false;
+    this.learningPath$?.pipe(take(1)).subscribe(learningPath => {
+      if (learningPath) {
+        skillInPath = learningPath.skills.includes(skill.id);
+      }
+    });
+    console.log(skillInPath);
+    return skillInPath;
+  }
+  
 }

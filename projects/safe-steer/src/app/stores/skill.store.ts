@@ -5,7 +5,7 @@ import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
 
 export interface SkillState extends EntityState<Skill> {
   ui: {
-    selectedLearningPath: string | null
+    selectedCategory: string | null
   }
 }
 
@@ -15,7 +15,7 @@ export class SkillStore extends EntityStore<SkillState> {
   constructor() {
     super({
       ui: {
-        selectedLearningPath: null
+        selectedCategory: null
       }
     });
   }

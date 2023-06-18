@@ -18,7 +18,7 @@ export class SkillQuery extends QueryEntity<SkillState, Skill> {
     })
   );
 
-  selectSelectedCategory$ = this.select(state => state.ui.selectedLearningPath);
+  selectSelectedCategory$ = this.select(state => state.ui.selectedCategory);
 
   selectFilteredSkills$ = combineLatest([
     this.selectAll(),
