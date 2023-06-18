@@ -27,7 +27,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/safe-steer/src/favicon.ico",
-              "projects/safe-steer/src/assets"
+              "projects/safe-steer/src/assets",
+              "projects/safe-steer/src/routes.json"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/purple-green.css",
