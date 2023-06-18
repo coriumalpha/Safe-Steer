@@ -15,6 +15,9 @@
         </mat-step>
       </ng-container>
     </mat-horizontal-stepper>
+    <div class="no-items-message highlight" *ngIf="!(learningPathSkills$ | async)">
+      Your Learning Path is empty, make a wise choice in selecting your journey.
+    </div>
   </div>
 
   <div>
@@ -31,11 +34,11 @@
 
     <div class="card-container">
       <app-skill-card class="app-skill-card" *ngFor="let skill of skills$ | async" [skill]="skill"
-        [isInLearningPath]="skillInLearningPath(skill)" (openDialogEvent)="openDialog(skill)"
+        [isInLearningPath]="skillInLearningPath(skill)" (openDialogEvent)="showSkillDetailDialog(skill)"
         (addToPathEvent)="addToLearningPath(skill)" (removeFromPathEvent)="removeFromLearningPath(skill)">
       </app-skill-card>
 
-      <app-new-item-card class="app-skill-card" (click)="newLearningPath()"></app-new-item-card>
+      <app-new-item-card class="app-skill-card" (click)="createNewSkill()"></app-new-item-card>
     </div>
   </div>
 </div>

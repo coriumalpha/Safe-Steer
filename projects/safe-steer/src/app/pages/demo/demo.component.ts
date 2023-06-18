@@ -11,6 +11,7 @@ import { LearningPathService } from '../../services/learning-path.service';
 
 import { LearningPathQuery } from '../../querys/learning-path.query';
 import { LearningPath } from '../../models/learning-path.model';
+import { NewSkillDialogComponent } from '../../components/new-skill-dialog/new-skill-dialog.component';
 
 @Component({
   selector: 'app-demo',
@@ -19,6 +20,8 @@ import { LearningPath } from '../../models/learning-path.model';
 })
 
 export class DemoComponent {
+  readonly imageNames = ['brake-discs', 'car-controls', 'engine', 'headlight', 'wave'];
+
   userLearningPath: number = 1;
   skills$!: Observable<Skill[]>;
   categories$!: Observable<string[]>;
@@ -57,7 +60,7 @@ export class DemoComponent {
       })
     );
   }
-  
+
   onCategorySelectionChange(category: string) {
     //TODO: Migrate to service
     this.skillQuery.selectSelectedCategory$.pipe(take(1)).subscribe(selectedCategory => {
@@ -65,17 +68,57 @@ export class DemoComponent {
     });
   }
 
-  openDialog(skill: Skill): void {
-    this.dialog.open(SkillDialogComponent, {
+  showSkillDetailDialog(skill: Skill): void {
+    const dialogRef = this.dialog.open(SkillDialogComponent, {
       width: '600px',
       data: skill
     });
-  }
+  
+    dialogRef.componentInstance.delete.subscribe({
+      next: () => {
+        this.skillService.delete(skill.id).subscribe({
+          next: () => {
+            console.log('Skill deleted successfully');
+            dialogRef.close();
+          },
+          error: (error: any) => {
+            console.error('Error deleting skill:', error);
+          },
+          complete: () => {
+            console.log('Delete operation completed');
+          }
+        });
+      },
+      error: (error: any) => {
+        console.error('Error in delete emitter:', error);
+      }
+    });
+  }  
 
-  newLearningPath(): void {
-    this.dialog.open(ErrorDialogComponent, {
-      width: '600px',
-      data: 'This functionallity is not implemented yet.'
+  createNewSkill(): void {
+    this.categories$.pipe(take(1)).subscribe({
+      next: (categories) => {
+        const dialogRef = this.dialog.open(NewSkillDialogComponent, {
+          width: '600px',
+          data: {
+            skill: { title: '', category: '', imageName: '', description: '' },
+            categories: categories,
+            imageNames: this.imageNames
+          },
+          disableClose: true  // Prevenir el cierre del diálogo haciendo click fuera de él o pulsando ESC
+        });
+
+        dialogRef.componentInstance.confirm.subscribe({
+          next: (newSkill: Skill) => {
+            this.skillService.add(newSkill).subscribe({
+              next: () => {
+                console.log('Skill added successfully');
+                dialogRef.close();
+              }
+            });
+          }
+        });
+      },
     });
   }
 
@@ -93,7 +136,7 @@ export class DemoComponent {
       this.updateLearningPathSkills();
     });
   }
-  
+
   removeFromLearningPath(skill: Skill): void {
     this.learningPath$.pipe(
       take(1),
@@ -108,7 +151,7 @@ export class DemoComponent {
       this.updateLearningPathSkills();
     });
   }
-  
+
 
   skillInLearningPath(skill: Skill): boolean {
     let skillInPath = false;
@@ -119,5 +162,5 @@ export class DemoComponent {
     });
     return skillInPath;
   }
-  
+
 }

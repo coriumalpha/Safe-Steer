@@ -1,5 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Skill } from '../../models/skill.model';
 
 @Component({
@@ -8,9 +8,17 @@ import { Skill } from '../../models/skill.model';
   styleUrls: ['./skill-dialog.component.scss']
 })
 export class SkillDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public skill: Skill) {}
+  @Output() delete = new EventEmitter<void>();
+
+  constructor(@Inject(MAT_DIALOG_DATA) public skill: Skill,
+              public dialogRef: MatDialogRef<SkillDialogComponent>) {}
 
   getImagePath(imageName: string) {
     return 'assets/images/' + imageName + '.png';
+  }
+
+  onDelete(): void {
+    this.delete.emit();
+    this.dialogRef.close();
   }
 }
