@@ -2,10 +2,11 @@
 import { Injectable } from '@angular/core';
 import { Skill } from '../models/skill.model';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
+import { Category } from '../models/category.model';
 
 export interface SkillState extends EntityState<Skill> {
   ui: {
-    selectedCategory: string | null
+    selectedCategory: Category | null
   }
 }
 

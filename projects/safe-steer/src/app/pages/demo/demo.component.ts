@@ -12,6 +12,10 @@ import { LearningPathService } from '../../services/learning-path.service';
 import { LearningPathQuery } from '../../querys/learning-path.query';
 import { LearningPath } from '../../models/learning-path.model';
 import { NewSkillDialogComponent } from '../../components/new-skill-dialog/new-skill-dialog.component';
+import { CategoryQuery } from '../../querys/category.query';
+import { CategoryStore } from '../../stores/category.store';
+import { CategoryService } from '../../services/category.service';
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-demo',
@@ -24,23 +28,31 @@ export class DemoComponent {
 
   userLearningPath: number = 1;
   skills$!: Observable<Skill[]>;
-  categories$!: Observable<string[]>;
-  selectedCategory$!: Observable<string | null>;
+  categories$!: Observable<Category[]>;
+  selectedCategory$!: Observable<Category | null>;
   learningPath$!: Observable<LearningPath | undefined>;
   learningPathSkills$!: Observable<(Skill | undefined)[]>;
 
-  constructor(private skillService: SkillService,
+  constructor(
+    private skillService: SkillService,
     private skillQuery: SkillQuery,
     private skillStore: SkillStore,
+    private categoryService: CategoryService,
+    private categoryQuery: CategoryQuery,
+    private categoryStore: CategoryStore,
     private learningPathService: LearningPathService,
     private learningPathQuery: LearningPathQuery,
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.skillService.get().subscribe();
-    this.skills$ = this.skillQuery.selectFilteredSkills$;
-    this.categories$ = this.skillQuery.selectLearningPaths$;
-    this.selectedCategory$ = this.skillQuery.selectSelectedCategory$;
+    this.skillService.get().subscribe(() => {
+      this.skills$ = this.skillQuery.selectFilteredSkills$;
+    });
+
+    this.categoryService.get().subscribe(() => {
+      this.categories$ = this.categoryQuery.selectAll();
+      this.selectedCategory$ = this.skillQuery.selectCategory;
+    });   
 
     this.learningPathService.get().subscribe(() => {
       this.learningPath$ = this.learningPathQuery.selectEntity(this.userLearningPath);
@@ -61,9 +73,9 @@ export class DemoComponent {
     );
   }
 
-  onCategorySelectionChange(category: string) {
+  onCategorySelectionChange(category: Category) {
     //TODO: Migrate to service
-    this.skillQuery.selectSelectedCategory$.pipe(take(1)).subscribe(selectedCategory => {
+    this.skillQuery.selectCategory.pipe(take(1)).subscribe(selectedCategory => {
       this.skillStore.update({ ui: { selectedCategory: (selectedCategory === category) ? null : category } });
     });
   }

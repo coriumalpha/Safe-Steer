@@ -11,22 +11,16 @@ export class SkillQuery extends QueryEntity<SkillState, Skill> {
     super(store);
   }
 
-  selectLearningPaths$ = this.selectAll().pipe(
-    map(skills => {
-      const learningPaths = skills.map(skill => skill.category);
-      return [...new Set(learningPaths)];
-    })
-  );
-
-  selectSelectedCategory$ = this.select(state => state.ui.selectedCategory);
+  selectCategory = this.select(state => state.ui.selectedCategory);
 
   selectFilteredSkills$ = combineLatest([
     this.selectAll(),
-    this.selectSelectedCategory$
+    this.selectCategory
   ]).pipe(
-    map(([skills, selectedLearningPath]) => {
-      if (selectedLearningPath) {
-        return skills.filter(skill => skill.category === selectedLearningPath);
+    map(([skills, selectedCategory]) => {
+      if (selectedCategory) {
+        //TODO: Compare by ID in filter, and update the application logic to use ID instead of name
+        return skills.filter(skill => skill.category === selectedCategory.title);
       } else {
         return skills;
       }

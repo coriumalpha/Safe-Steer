@@ -28,7 +28,7 @@
     <mat-chip-listbox>
       <mat-chip-option *ngFor="let category of categories$ | async"
         [selected]="category === (selectedCategory$ | async)" (selectionChange)="onCategorySelectionChange(category)">
-        {{ category }}
+        {{ category.title }}
       </mat-chip-option>
     </mat-chip-listbox>
 

@@ -44,5 +44,23 @@
         3
       ]
     }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "title": "Driving Skills"
+    },
+    {
+      "id": 2,
+      "title": "Vehicle knowledge"
+    },
+    {
+      "id": 3,
+      "title": "Attention and Safety"
+    },
+    {
+      "id": 4,
+      "title": "Electric Vehicles"
+    }
   ]
 }
