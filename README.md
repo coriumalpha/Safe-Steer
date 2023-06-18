@@ -1,27 +1,26 @@
-# SafeSteer
+# 🛻 SafeSteer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
+## 🚀 Goals
 
-## Development server
+- Develop a reactivity demonstrator that exemplifies the ability of a user interface (UI) to dynamically adapt to real-time changes.
+- Utilize Akita as the State Manager to efficiently and scalably manage the application's state.
+- Integrate the Material component library to ensure a consistent and high-quality look and user experience.
+- Customize Material styles using SCSS with a vaporwave-inspired artistic style, creating a unique and visually appealing aesthetic.
+- Deploy the testing environment on Azure using GitHub Actions and a Static App service, providing easy deployment and access to the demonstrator application.
+- Use a JSON Server on an Azure App Service as the backend to efficiently handle data and provide a real-time experience.
+- Demonstrate the reactivity of the UI by showcasing real-time changes in response to events, user interactions, or data updates from the JSON Server.
+- Provide an interactive and engaging user experience, leveraging the features of Akita, Material, and the vaporwave-inspired custom style to create a visually striking and user-friendly interface.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 💻 Web Application
 
-## Code scaffolding
+- Azure Static Web Application with Node
+- GitHub Repository → https://github.com/coriumalpha/Safe-Steer
+- Test environment → https://polite-mushroom-0c65cab10.3.azurestaticapps.net
+- GitHub Actions CI/CD Pipeline → https://github.com/coriumalpha/Safe-Steer/tree/develop/.github/workflows
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🌐 API Service
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- JSON Server on Azure App Service
+- GitHub Repository → https://github.com/coriumalpha/SteerSafeApi
+- Test environment → https://steersafeapiserver.azurewebsites.net/
+- Server deployment → https://github.com/jesperorb/json-server-heroku#deploy-to-azure
