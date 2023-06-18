@@ -1,4 +1,4 @@
-mat-dialog-content {
+.dialog-container {
     background: -webkit-linear-gradient(to bottom, hsl(185, 79%, 80%) 55%, hsl(141, 79%, 80%));
     background: linear-gradient(to bottom, hsl(185, 79%, 80%) 55%, hsl(141, 79%, 80%));
 }  
@@ -38,4 +38,15 @@ mat-dialog-content {
 mat-card-title {
     font-size: 1.85em;
     line-height: 1.85em;
+}
+
+button.delete {
+    background: -webkit-linear-gradient(to left, #5a1677 50%, #221f47);
+    background: linear-gradient(to left, #5a1677 50%, #221f47);
+    color: #4de9ee;
+
+    &:hover {
+        filter: brightness(1.2);
+        color: #69f0ae;
+    }
 }

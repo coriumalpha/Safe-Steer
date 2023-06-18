@@ -1,11 +1,16 @@
-<mat-dialog-content class="dialog-content">
-    <img class="background-image" [src]="getImagePath(skill.imageName)">
-    <div class="content">
-        <mat-card-title class="vaporwave-text">{{ skill.title }}</mat-card-title>
-        <h3 class="vaporwave-text">{{ skill.category }}</h3>
-        <p class="vaporwave-text">{{ skill.description }}</p>
-    </div>
-</mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button (click)="onDelete()">Delete</button>
-</mat-dialog-actions>
+<div class="dialog-container">
+    <mat-dialog-content class="dialog-content">
+        <img class="background-image" [src]="getImagePath(skill.imageName)">
+        <div class="content">
+            <mat-card-title class="vaporwave-text">{{ skill.title }}</mat-card-title>
+            <h3 class="vaporwave-text">{{ skill.category }}</h3>
+            <p class="vaporwave-text">{{ skill.description }}</p>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button class="delete" (click)="onDelete()">
+            <mat-icon>delete</mat-icon>
+            Delete
+        </button>
+    </mat-dialog-actions>
+</div>

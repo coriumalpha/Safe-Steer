@@ -2,6 +2,7 @@ import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { Skill } from '../../models/skill.model';
+import { Category } from '../../models/category.model';
 
 
 @Component({
@@ -15,14 +16,14 @@ export class NewSkillDialogComponent {
   imageNameControl = new FormControl('', Validators.required);
   descriptionControl = new FormControl('', Validators.required);
 
-  categories: string[];
+  categories: Category[];
   imageNames: string[];
 
   @Output() confirm = new EventEmitter<Skill>();
 
   constructor(
     public dialogRef: MatDialogRef<NewSkillDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {skill: Skill, categories: string[], imageNames: string[]}
+    @Inject(MAT_DIALOG_DATA) public data: {skill: Skill, categories: Category[], imageNames: string[]}
   ) {
     this.categories = data.categories;
     this.imageNames = data.imageNames;
