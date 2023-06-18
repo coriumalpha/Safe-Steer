@@ -11,7 +11,6 @@ import { LearningPathService } from '../../services/learning-path.service';
 
 import { LearningPathQuery } from '../../querys/learning-path.query';
 import { LearningPath } from '../../models/learning-path.model';
-import { filterNilValue } from '@datorama/akita';
 
 @Component({
   selector: 'app-demo',
@@ -25,7 +24,7 @@ export class DemoComponent {
   categories$!: Observable<string[]>;
   selectedCategory$!: Observable<string | null>;
   learningPath$!: Observable<LearningPath | undefined>;
-  learningPathSkills$!: Observable<Skill[]>;
+  learningPathSkills$!: Observable<(Skill | undefined)[]>;
 
   constructor(private skillService: SkillService,
     private skillQuery: SkillQuery,
@@ -42,19 +41,23 @@ export class DemoComponent {
 
     this.learningPathService.get().subscribe(() => {
       this.learningPath$ = this.learningPathQuery.selectEntity(this.userLearningPath);
-      this.learningPathSkills$ = this.learningPath$.pipe(
-        filter((learningPath): learningPath is LearningPath => learningPath !== undefined),
-        switchMap(learningPath => {
-          const skillObservables = learningPath.skills.map(skillId => {
-            return this.skillService.getSkill(skillId);
-          });
-          return combineLatest(skillObservables);
-        }),
-      );
+      this.updateLearningPathSkills();
     });
 
   }
 
+  updateLearningPathSkills(): void {
+    this.learningPathSkills$ = this.learningPath$.pipe(
+      filter((learningPath): learningPath is LearningPath => learningPath !== undefined),
+      switchMap(learningPath => {
+        const skillObservables = learningPath.skills.map(skillId => {
+          return this.skillQuery.selectEntity(skillId); // Obtener el skill de la consulta de Akita
+        });
+        return combineLatest(skillObservables);
+      })
+    );
+  }
+  
   onCategorySelectionChange(category: string) {
     //TODO: Migrate to service
     this.skillQuery.selectSelectedCategory$.pipe(take(1)).subscribe(selectedCategory => {
@@ -63,24 +66,16 @@ export class DemoComponent {
   }
 
   openDialog(skill: Skill): void {
-    const dialogRef = this.dialog.open(SkillDialogComponent, {
+    this.dialog.open(SkillDialogComponent, {
       width: '600px',
       data: skill
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      //TODO: Remove if not needed
     });
   }
 
   newLearningPath(): void {
-    const dialogRef = this.dialog.open(ErrorDialogComponent, {
+    this.dialog.open(ErrorDialogComponent, {
       width: '600px',
       data: 'This functionallity is not implemented yet.'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      //TODO: Remove if not needed
     });
   }
 
@@ -95,16 +90,25 @@ export class DemoComponent {
         }
       })
     ).subscribe(() => {
-      // Handle success
-    }, error => {
-      // Handle error
+      this.updateLearningPathSkills();
     });
   }
   
   removeFromLearningPath(skill: Skill): void {
-    this.learningPathService.removeSkillFromPath(this.userLearningPath, skill.id).subscribe(() => {
+    this.learningPath$.pipe(
+      take(1),
+      switchMap(learningPath => {
+        if (learningPath) {
+          return this.learningPathService.removeSkillFromPath(learningPath, skill.id);
+        } else {
+          return of(undefined);
+        }
+      })
+    ).subscribe(() => {
+      this.updateLearningPathSkills();
     });
   }
+  
 
   skillInLearningPath(skill: Skill): boolean {
     let skillInPath = false;
@@ -113,7 +117,6 @@ export class DemoComponent {
         skillInPath = learningPath.skills.includes(skill.id);
       }
     });
-    console.log(skillInPath);
     return skillInPath;
   }
   

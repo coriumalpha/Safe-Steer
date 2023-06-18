@@ -31,15 +31,16 @@ export class LearningPathService {
         this.learningPathStore.update(learningPath.id, updatedLearningPath);
       }));
   }
-  
 
-
-  removeSkillFromPath(learningPathId: number, skillId: number): Observable<void> {
-    return this.http.delete<void>(`http://localhost:3000/learningPaths/${learningPathId}/skills/${skillId}`)
-      .pipe(tap(() => {
-        this.learningPathStore.update(learningPathId, learningPath => {
-          return { ...learningPath, skills: learningPath.skills.filter(id => id !== skillId) };
-        });
-      }));
-    }
+  removeSkillFromPath(learningPath: LearningPath, skillId: number): Observable<LearningPath> | Observable<never> {
+    const updatedSkills = learningPath.skills.filter((id) => id !== skillId);
+    const updatedLearningPath = { ...learningPath, skills: updatedSkills };
+    return this.http
+      .put<LearningPath>(`http://localhost:3000/learningPaths/${learningPath.id}`, updatedLearningPath)
+      .pipe(
+        tap(() => {
+          this.learningPathStore.update(learningPath.id, updatedLearningPath);
+        })
+      );
+  }
 }
