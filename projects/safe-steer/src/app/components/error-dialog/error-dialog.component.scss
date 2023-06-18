@@ -1,41 +1,14 @@
-mat-dialog-content {
-    background: -webkit-linear-gradient(to bottom, hsl(185, 79%, 80%) 55%, hsl(141, 79%, 80%));
-    background: linear-gradient(to bottom, hsl(185, 79%, 80%) 55%, hsl(141, 79%, 80%));
-}  
-
-.dialog-content {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+mat-card {
+    background: #24243e; /* fallback for old browsers */
+    background: -webkit-linear-gradient(0.85turn, #24243e, #221f47, #5a1677);
+    background: linear-gradient(0.85turn, #1c1c30, #221f47, #5a1677);
+    min-height: 120px;
 }
 
-.background-image {
-    position: absolute;
-    top: 20px;
-    width: 90%;
-    object-fit: cover;
-    z-index: 1;
-    opacity: 0.35;
-}
-
-.content {
-    z-index: 2;
-    text-align: center;
-    padding-top: 45%;
-    width: 100%;
-}
-
-.vaporwave-text {
-    background: -webkit-linear-gradient(0.3turn, #221f47, #c700ff);
-    background: linear-gradient(0.3turn, #221f47, #c700ff);
+.highlight {
+    background: -webkit-linear-gradient(0.25turn, #69f0ae, #4de9ee);
+    background: linear-gradient(0.25turn, #69f0ae, #4de9ee);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-
-mat-card-title {
-    font-size: 1.85em;
-    line-height: 1.85em;
 }

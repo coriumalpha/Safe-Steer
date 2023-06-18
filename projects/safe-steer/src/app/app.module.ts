@@ -21,6 +21,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SkillDialogComponent } from './components/skill-dialog/skill-dialog.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
+import { MatStepperModule } from '@angular/material/stepper'; 
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ErrorDialogComponent } from './components/error-dialog/error-dialog.com
     MatChipsModule,
     HttpClientModule,
     MatDialogModule,
+    MatStepperModule,
     environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
   providers: [],

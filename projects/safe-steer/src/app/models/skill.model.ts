@@ -1,7 +1,7 @@
 export interface Skill {
   id: number;
   title: string;
-  learningPath: string;
+  category: string;
   imageName: string;
   description: string;
 }

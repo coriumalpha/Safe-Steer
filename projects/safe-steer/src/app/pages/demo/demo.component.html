@@ -3,24 +3,36 @@
     <h1 class="highlight">Learning path</h1>
   </div>
 
+  <div class="learning-path-container">
+    <mat-horizontal-stepper [linear]="true" #stepper>
+      <ng-container *ngIf="(learningPathSkills$ | async) as learningPathSkills">
+        <mat-step *ngFor="let skill of learningPathSkills">
+          <ng-template matStepLabel>
+            <div class="custom-label">
+              {{ skill.title }}
+            </div>
+          </ng-template>
+        </mat-step>
+      </ng-container>
+    </mat-horizontal-stepper>
+  </div>
+
   <div>
     <div class="section-title">
       <h1 class="highlight">Skills</h1>
     </div>
 
     <mat-chip-listbox>
-      <mat-chip-option 
-        *ngFor="let learningPath of learningPaths$ | async"
-        [selected]="learningPath === (selectedLearningPath$ | async)"
-        (selectionChange)="onLearningPathSelectionChange(learningPath)"
-      >
-        {{ learningPath }}
+      <mat-chip-option *ngFor="let category of categories$ | async"
+        [selected]="category === (selectedCategory$ | async)" (selectionChange)="onCategorySelectionChange(category)">
+        {{ category }}
       </mat-chip-option>
     </mat-chip-listbox>
 
     <div class="card-container">
-      <app-skill-card class="app-skill-card" *ngFor="let skill of skills$ | async" [skill]="skill" (openDialogEvent)="openDialog($event)"></app-skill-card>
-      <app-new-item-card class="app-skill-card"></app-new-item-card>
+      <app-skill-card class="app-skill-card" *ngFor="let skill of skills$ | async" [skill]="skill"
+        (openDialogEvent)="openDialog($event)"></app-skill-card>
+      <app-new-item-card class="app-skill-card" (click)="addLearningPath()"></app-new-item-card>
     </div>
   </div>
 </div>

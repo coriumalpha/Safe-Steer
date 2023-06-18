@@ -12,6 +12,12 @@
   margin-top: 20px;
 }
 
+.learning-path-container {
+  mat-horizontal-stepper {
+    background-color: transparent;
+  }
+}
+
 .app-skill-card {
   margin-bottom: 20px;
 }
@@ -54,7 +60,7 @@
 
 h1 {
   font-size: 2.25rem;
-  line-height: 1;
+  line-height: 1.5;
 }
 
 .section-title {
