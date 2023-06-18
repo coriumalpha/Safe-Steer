@@ -6,7 +6,7 @@
   <div class="learning-path-container">
     <mat-horizontal-stepper [linear]="true" *ngIf="(learningPathSkills$ | async) as learningPathSkills" #stepper>
       <ng-container>
-        <mat-step *ngFor="let skill of learningPathSkills">
+        <mat-step *ngFor="let skill of learningPathSkills" completed="false">
           <ng-template matStepLabel>
             <div class="custom-label">
               {{ skill?.title }}

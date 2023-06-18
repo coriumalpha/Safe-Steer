@@ -6,14 +6,12 @@ import { SkillQuery } from '../../querys/skill.query';
 import { SkillStore } from '../../stores/skill.store';
 import { MatDialog } from '@angular/material/dialog';
 import { SkillDialogComponent } from '../../components/skill-dialog/skill-dialog.component';
-import { ErrorDialogComponent } from '../../components/error-dialog/error-dialog.component';
 import { LearningPathService } from '../../services/learning-path.service';
 
 import { LearningPathQuery } from '../../querys/learning-path.query';
 import { LearningPath } from '../../models/learning-path.model';
 import { NewSkillDialogComponent } from '../../components/new-skill-dialog/new-skill-dialog.component';
 import { CategoryQuery } from '../../querys/category.query';
-import { CategoryStore } from '../../stores/category.store';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category.model';
 
@@ -39,7 +37,6 @@ export class DemoComponent {
     private skillStore: SkillStore,
     private categoryService: CategoryService,
     private categoryQuery: CategoryQuery,
-    private categoryStore: CategoryStore,
     private learningPathService: LearningPathService,
     private learningPathQuery: LearningPathQuery,
     public dialog: MatDialog) { }
@@ -92,17 +89,8 @@ export class DemoComponent {
           next: () => {
             console.log('Skill deleted successfully');
             dialogRef.close();
-          },
-          error: (error: any) => {
-            console.error('Error deleting skill:', error);
-          },
-          complete: () => {
-            console.log('Delete operation completed');
           }
         });
-      },
-      error: (error: any) => {
-        console.error('Error in delete emitter:', error);
       }
     });
   }  
