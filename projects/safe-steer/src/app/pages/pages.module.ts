@@ -5,6 +5,7 @@ import { DemoComponent } from './demo/demo.component';
 import { HomeComponent } from './home/home.component';
 import { ComponentsModule } from '../components/components.module';
 import { MaterialModule } from '../material.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { MaterialModule } from '../material.module';
     CommonModule,
     MaterialModule,
     ComponentsModule,
+    RouterModule
   ],
   exports: [
     DemoComponent,
