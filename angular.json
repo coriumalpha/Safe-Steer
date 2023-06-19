@@ -41,7 +41,7 @@
               "fileReplacements": [
                 {
                   "replace": "projects/safe-steer/src/environments/environment.ts",
-                  "with": "projects/safe-steer/src/environments/environment.ts"
+                  "with": "projects/safe-steer/src/environments/environment.prod.ts"
                 }
               ],
               "budgets": [
