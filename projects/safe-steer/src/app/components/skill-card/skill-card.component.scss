@@ -56,25 +56,30 @@ mat-card-actions button {
     background-clip: text;
 }
 
-button.action {
-    background: -webkit-linear-gradient(to right, #4de9ee 55%, #69f0ae);
-    background: linear-gradient(to right, #4de9ee 55%, #69f0ae);
-    color: #302b63;
-
-    &:hover {
-        filter: brightness(1.2);
-        color: #7b1fa2;
+button {
+    z-index: 2;
+    &.action {
+        background: -webkit-linear-gradient(to right, #4de9ee 55%, #69f0ae);
+        background: linear-gradient(to right, #4de9ee 55%, #69f0ae);
+        color: #302b63;
+    
+        &:hover {
+            color: #7b1fa2;
+        }
     }
-}
 
-button.delete {
-    background: -webkit-linear-gradient(to left, #5a1677 50%, #221f47);
-    background: linear-gradient(to left, #5a1677 50%, #221f47);
-    color: #4de9ee;
+    &.delete {
+        background: -webkit-linear-gradient(to left, #5a1677 50%, #221f47);
+        background: linear-gradient(to left, #5a1677 50%, #221f47);
+        color: #4de9ee;
+    
+        &:hover {
+            color: #69f0ae;
+        }
+    }
 
     &:hover {
         filter: brightness(1.2);
-        color: #69f0ae;
     }
 }
 

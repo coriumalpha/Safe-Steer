@@ -21,7 +21,6 @@ describe('SkillCardComponent', () => {
     fixture = TestBed.createComponent(SkillCardComponent);
     component = fixture.componentInstance;
 
-    // Provide a test value for the skill input
     component.skill = {
       id: 1,
       title: 'Test Skill',
@@ -30,7 +29,6 @@ describe('SkillCardComponent', () => {
       description: 'Test description'
     };
 
-    // Provide a test value for the isInLearningPath input
     component.isInLearningPath = false;
 
     fixture.detectChanges();
