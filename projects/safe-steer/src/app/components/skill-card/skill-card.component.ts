@@ -21,7 +21,6 @@ export class SkillCardComponent {
   }
 
   openDialog(event: Event): void {
-    event.stopPropagation();
     this.openDialogEvent.emit(this.skill);
   }
 

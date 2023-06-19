@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialModule } from './material.module';
+import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -28,10 +29,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('safe-steer');
   });
 
-  it('should render title', () => {
+  it('should render navbar', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('safe-steer app is running!');
+    const navbarElement = fixture.debugElement.query(By.directive(NavbarComponent));
+    expect(navbarElement).toBeTruthy();
   });
 });

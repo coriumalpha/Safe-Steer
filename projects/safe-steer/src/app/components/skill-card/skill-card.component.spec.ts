@@ -22,7 +22,7 @@ describe('SkillCardComponent', () => {
     component = fixture.componentInstance;
 
     component.skill = {
-      id: 1,
+      id: 8,
       title: 'Test Skill',
       category: 'Test Category',
       imageName: 'test-image',
@@ -40,7 +40,7 @@ describe('SkillCardComponent', () => {
 
   it('should emit openDialogEvent when card is clicked', () => {
     spyOn(component.openDialogEvent, 'emit');
-    fixture.debugElement.query(By.css('.card-container')).triggerEventHandler('click', null);
+    fixture.debugElement.query(By.css('mat-card')).triggerEventHandler('click', null);
     expect(component.openDialogEvent.emit).toHaveBeenCalledWith(component.skill);
   });
 
@@ -48,7 +48,8 @@ describe('SkillCardComponent', () => {
     component.isInLearningPath = false;
     fixture.detectChanges();
     spyOn(component.addToPathEvent, 'emit');
-    fixture.debugElement.query(By.css('.action')).triggerEventHandler('click', null);
+    let button = fixture.nativeElement.querySelector('.action');
+    button.click();
     expect(component.addToPathEvent.emit).toHaveBeenCalledWith(component.skill);
   });
 
@@ -56,7 +57,8 @@ describe('SkillCardComponent', () => {
     component.isInLearningPath = true;
     fixture.detectChanges();
     spyOn(component.removeFromPathEvent, 'emit');
-    fixture.debugElement.query(By.css('.delete')).triggerEventHandler('click', null);
+    let button = fixture.nativeElement.querySelector('.delete');
+    button.click();
     expect(component.removeFromPathEvent.emit).toHaveBeenCalledWith(component.skill);
   });
 });
