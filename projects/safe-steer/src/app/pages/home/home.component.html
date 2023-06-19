@@ -1,16 +1,16 @@
 <div class="content">
   <div class="fullscreen">
-    <div class="main-title">
+    <div class="main-title highlight">
       SKILL REFINING
       <br>PROGRAM
     </div>
-    <span class="subtitle">
+    <div class="subtitle">
       <span class="highlight">SafeSteer</span> is a program that helps you<br> to improve your driving skills.
-    </span>    
+    </div>    
     <div class="actions">
       <button mat-raised-button color="primary" (click)="scrollToDocumentation()">
-        <mat-icon>description</mat-icon>
-        Docs
+        <mat-icon>token</mat-icon>
+        About
       </button>
       <button mat-raised-button color="accent" routerLink="/demo">
         <mat-icon>play_arrow</mat-icon>
@@ -19,11 +19,57 @@
     </div>
   </div>
   <div class="documentation" id="documentation">
-    <div class="main-title">
-      NOT FULL SCREEN
+    <div class="main-title highlight">
+      ABOUT
     </div>
-    <span class="subtitle">
-      <span class="highlight">more</span> text here hahaha! this will be the docs
-    </span>    
+    <div class="subtitle">
+      <span class="highlight">SafeSteer.</span> A reactive web application with a vaporwave-inspired style that utilizes Akita, Material, and Azure to deliver a dynamic and visually appealing user experience.
+    </div>
+
+    <div class="card-container">
+
+      <mat-card class="bg-dreamwave-accent">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title class="dark">Running on Azure Static Web App</mat-card-title>
+            <mat-card-subtitle class="dark">
+              <a href="https://polite-mushroom-0c65cab10.3.azurestaticapps.net">Test environment</a>
+              <a href="https://github.com/coriumalpha/Safe-Steer" target="_blank">GitHub Repository</a>
+            </mat-card-subtitle>
+            <img mat-card-sm-image class="fixed-scale" src="assets/images/azure-static.png" >
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content class="dark">
+          You can try out the application here without having to run or install anything on your local machine, everything is ready to go!
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="bg-dreamwave-accent">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title class="dark">JSON Server on Azure App Service</mat-card-title>
+            <mat-card-subtitle class="dark">
+              <a href="https://steersafeapiserver.azurewebsites.net" target="_blank">Test environment</a>
+              <a href="https://github.com/coriumalpha/SteerSafeApi" target="_blank">GitHub Repository</a>
+            </mat-card-subtitle>
+            <img mat-card-sm-image class="fixed-scale" src="assets/images/app-service.png" >
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content class="dark">
+          JSON Server deployed on Azure App Service, providing efficient data handling and real-time experience for the SafeSteer web application.
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="card-container">
+
+      <mat-card class="bg-dreamwave-accent demo" routerLink="/demo">
+        <div class="title highlight">
+          <mat-icon>play_arrow</mat-icon>
+          TRY IT OUT!
+        </div>
+      </mat-card>
+
+    </div>
   </div>
 </div>

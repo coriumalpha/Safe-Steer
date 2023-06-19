@@ -1,42 +1,45 @@
-<h1 mat-dialog-title>Add Skill</h1>
-<mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Title</mat-label>
-    <input matInput type="text" [formControl]="titleControl">
-    <mat-error *ngIf="titleControl.hasError('required')">
-      Title is required
-    </mat-error>
-  </mat-form-field>
+<div class="new-skill-container">
+  <h1 mat-dialog-title>Add Skill</h1>
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput type="text" [formControl]="titleControl">
+      <mat-error *ngIf="titleControl.hasError('required')">
+        Title is required
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Category</mat-label>
-    <mat-select [formControl]="categoryControl">
-      <mat-option *ngFor="let category of categories" [value]="category.id">{{category.title}}</mat-option>
-    </mat-select>
-    <mat-error *ngIf="categoryControl.hasError('required')">
-      Category is required
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select [formControl]="categoryControl">
+        <mat-option *ngFor="let category of categories" [value]="category.id">{{category.title}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="categoryControl.hasError('required')">
+        Category is required
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Image Name</mat-label>
-    <mat-select [formControl]="imageNameControl">
-      <mat-option *ngFor="let image of imageNames" [value]="image">{{image}}</mat-option>
-    </mat-select>
-    <mat-error *ngIf="imageNameControl.hasError('required')">
-      Image Name is required
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Image Name</mat-label>
+      <mat-select [formControl]="imageNameControl">
+        <mat-option *ngFor="let image of imageNames" [value]="image">{{image}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="imageNameControl.hasError('required')">
+        Image Name is required
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Description</mat-label>
-    <textarea matInput type="text" [formControl]="descriptionControl" rows="8"></textarea>
-    <mat-error *ngIf="descriptionControl.hasError('required')">
-      Description is required
-    </mat-error>
-  </mat-form-field>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button (click)="onConfirm()" cdkFocusInitial [disabled]="!titleControl.valid || !categoryControl.valid || !imageNameControl.valid || !descriptionControl.valid">Add</button>
-</mat-dialog-actions>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput type="text" [formControl]="descriptionControl" rows="8"></textarea>
+      <mat-error *ngIf="descriptionControl.hasError('required')">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-button (click)="onConfirm()" cdkFocusInitial
+      [disabled]="!titleControl.valid || !categoryControl.valid || !imageNameControl.valid || !descriptionControl.valid">Add</button>
+  </mat-dialog-actions>
+</div>
