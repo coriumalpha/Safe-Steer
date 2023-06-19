@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NewSkillDialogComponent } from './new-skill-dialog.component';
 import { MaterialModule } from '../../material.module';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('NewSkillDialogComponent', () => {
   let component: NewSkillDialogComponent;
@@ -12,7 +14,9 @@ describe('NewSkillDialogComponent', () => {
     TestBed.configureTestingModule({
       declarations: [NewSkillDialogComponent],
       imports: [
-        MaterialModule
+        MaterialModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule
       ],
       providers: [
         {
