@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { finalize, tap } from 'rxjs/operators';
+import { finalize, map, mapTo, switchMap, tap } from 'rxjs/operators';
 import { ID } from '@datorama/akita';
 import { Skill } from '../models/skill.model';
 import { SkillStore } from '../stores/skill.store';
@@ -45,12 +45,13 @@ export class SkillService {
     const updateObservables = pathsWithSkill.map(path => this.learningPathService.removeSkillFromPath(path, skillId));
   
     return forkJoin(updateObservables).pipe(
-      finalize(() => this.http.delete<Skill>(`${environment.api}/skills/${skillId}`).subscribe(() => {
+      finalize(() => this.http.delete(`${environment.api}/skills/${skillId}`).subscribe(() => {
         this.skillStore.remove(skillId);
       })),
       tap(() => {
         this.skillStore.remove(skillId);
-      })
+      }),
+      map(() => undefined)
     );
   }  
   

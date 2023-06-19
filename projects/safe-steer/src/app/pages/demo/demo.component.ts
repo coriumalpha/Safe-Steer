@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Observable, combineLatest, filter, of, switchMap, take, tap } from 'rxjs';
 import { Skill } from '../../models/skill.model';
 import { SkillService } from '../../services/skill.service';
@@ -55,7 +55,6 @@ export class DemoComponent {
       this.learningPath$ = this.learningPathQuery.selectEntity(this.userLearningPath);
       this.updateLearningPathSkills();
     });
-
   }
 
   updateLearningPathSkills(): void {
@@ -63,7 +62,7 @@ export class DemoComponent {
       filter((learningPath): learningPath is LearningPath => learningPath !== undefined),
       switchMap(learningPath => {
         const skillObservables = learningPath.skills.map(skillId => {
-          return this.skillQuery.selectEntity(skillId); // Obtener el skill de la consulta de Akita
+          return this.skillQuery.selectEntity(skillId);
         });
         return combineLatest(skillObservables);
       })
@@ -85,9 +84,8 @@ export class DemoComponent {
   
     dialogRef.componentInstance.delete.subscribe({
       next: () => {
-        this.skillService.delete(skill.id).subscribe({
+        this.deleteSkill(skill.id).subscribe({
           next: () => {
-            console.log('Skill deleted successfully');
             dialogRef.close();
           }
         });
@@ -95,31 +93,34 @@ export class DemoComponent {
     });
   }  
 
+  deleteSkill(id: number): Observable<void> {
+    return this.skillService.delete(id);
+  }
+
   createNewSkill(): void {
-    this.categories$.pipe(take(1)).subscribe({
-      next: (categories) => {
+    this.categories$.pipe(
+      take(1),
+      switchMap((categories) => {
         const dialogRef = this.dialog.open(NewSkillDialogComponent, {
           width: '600px',
           data: {
             skill: { title: '', category: '', imageName: '', description: '' },
             categories: categories,
             imageNames: this.imageNames
-          },
-          disableClose: true  // Prevenir el cierre del diálogo haciendo click fuera de él o pulsando ESC
-        });
-
-        dialogRef.componentInstance.confirm.subscribe({
-          next: (newSkill: Skill) => {
-            this.skillService.add(newSkill).subscribe({
-              next: () => {
-                console.log('Skill added successfully');
-                dialogRef.close();
-              }
-            });
           }
         });
-      },
-    });
+  
+        return dialogRef.componentInstance.confirm.pipe(
+          take(1),
+          switchMap((newSkill: Skill) => this.addSkill(newSkill)),
+          tap(() => dialogRef.close())
+        );
+      })
+    ).subscribe();
+  }
+  
+  addSkill(skill: Skill): Observable<Skill> {
+    return this.skillService.add(skill);
   }
 
   addToLearningPath(skill: Skill): void {
@@ -151,7 +152,6 @@ export class DemoComponent {
       this.updateLearningPathSkills();
     });
   }
-
 
   skillInLearningPath(skill: Skill): boolean {
     let skillInPath = false;

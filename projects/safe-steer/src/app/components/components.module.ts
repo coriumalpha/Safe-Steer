@@ -9,6 +9,7 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { NewItemCardComponent } from './new-item-card/new-item-card.component';
 import { NewSkillDialogComponent } from './new-skill-dialog/new-skill-dialog.component';
 import { SkillCardComponent } from './skill-card/skill-card.component';
+import { LearningPathsComponent } from './learning-paths/learning-paths.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SkillCardComponent } from './skill-card/skill-card.component';
     NewItemCardComponent,
     NewSkillDialogComponent,
     SkillCardComponent,
-    SkillDialogComponent
+    SkillDialogComponent,
+    LearningPathsComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { SkillCardComponent } from './skill-card/skill-card.component';
     NewItemCardComponent,
     NewSkillDialogComponent,
     SkillCardComponent,
-    SkillDialogComponent
+    SkillDialogComponent,
+    LearningPathsComponent
   ]
 })
 export class ComponentsModule { }

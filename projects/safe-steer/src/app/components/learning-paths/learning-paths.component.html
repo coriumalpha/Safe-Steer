@@ -1,0 +1,19 @@
+<mat-horizontal-stepper [linear]="true" *ngIf="(learningPathSkills$ | async) as learningPathSkills" #stepper>
+      
+    <mat-step *ngFor="let skill of learningPathSkills" completed="false" state="your-state-name-here-1">
+      <ng-template matStepLabel>
+        <div class="custom-label">
+          {{ skill?.title }}
+        </div>
+      </ng-template>
+    </mat-step>
+
+    <ng-template matStepperIcon="your-state-name-here-1">
+      <mat-icon>person</mat-icon>
+    </ng-template>
+  
+</mat-horizontal-stepper>
+
+<div class="no-items-message highlight" *ngIf="!(learningPathSkills$ | async)">
+  Your Learning Path is empty, make a wise choice in selecting your journey.
+</div>
