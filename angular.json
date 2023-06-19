@@ -104,7 +104,8 @@
               "@angular/material/prebuilt-themes/purple-green.css",
               "projects/safe-steer/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "karmaConfig": "projects/safe-steer/karma.conf.js"
           }
         }
       }
