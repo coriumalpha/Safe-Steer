@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    api: 'steersafeapiserver.azurewebsites.net'
+    api: 'https://steersafeapiserver.azurewebsites.net'
 };
