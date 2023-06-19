@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SkillCardComponent } from './skill-card.component';
+import { MaterialModule } from '../../material.module';
+import { TruncatedTextComponent } from '../../shared/truncated-text/truncated-text.component';
 
 describe('SkillCardComponent', () => {
   let component: SkillCardComponent;
@@ -8,7 +10,13 @@ describe('SkillCardComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SkillCardComponent]
+      declarations: [
+        SkillCardComponent,
+        TruncatedTextComponent
+      ],
+      imports: [
+        MaterialModule
+      ]
     });
     fixture = TestBed.createComponent(SkillCardComponent);
     component = fixture.componentInstance;

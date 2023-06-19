@@ -8,10 +8,13 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +23,7 @@ import { PagesModule } from './pages/pages.module';
     HttpClientModule,
     SharedModule,
     PagesModule,
+    MaterialModule,
     environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
   providers: [],
