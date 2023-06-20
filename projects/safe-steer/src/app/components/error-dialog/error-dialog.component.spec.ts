@@ -32,8 +32,6 @@ describe('ErrorDialogComponent', () => {
     fixture.detectChanges();
   });
 
-//TODO: Ensure it displays "Test message"
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });

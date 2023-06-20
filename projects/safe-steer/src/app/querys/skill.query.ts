@@ -19,7 +19,6 @@ export class SkillQuery extends QueryEntity<SkillState, Skill> {
   ]).pipe(
     map(([skills, selectedCategory]) => {
       if (selectedCategory) {
-        //TODO: Compare by ID in filter, and update the application logic to use ID instead of name
         return skills.filter(skill => skill.category === selectedCategory.title);
       } else {
         return skills;
