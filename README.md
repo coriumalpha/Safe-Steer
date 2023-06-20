@@ -1,5 +1,9 @@
 # 🛻 SafeSteer
 
+## 📘 Docs
+
+ - [https://github.com/coriumalpha/Safe-Steer/blob/develop/projects/safe-steer/src/assets/safe-steer-docs.pdf](https://github.com/coriumalpha/Safe-Steer/blob/develop/projects/safe-steer/src/assets/safe-steer-docs.pdf)
+
 ## 🚀 Goals
 
 - Develop a reactivity demonstrator that exemplifies the ability of a user interface (UI) to dynamically adapt to real-time changes.
