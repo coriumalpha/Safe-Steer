@@ -8,11 +8,11 @@
       <span class="highlight">SafeSteer</span> is a program designed<br>to enhance your driving skills.
     </div>    
     <div class="actions">
-      <button mat-raised-button color="primary" (click)="scrollToDocumentation()">
+      <button mat-raised-button class="about" (click)="scrollToDocumentation()">
         <mat-icon>token</mat-icon>
         About
       </button>
-      <button mat-raised-button color="accent" routerLink="/demo">
+      <button mat-raised-button class="demo" routerLink="/demo">
         <mat-icon>play_arrow</mat-icon>
         Demo
       </button>
@@ -59,6 +59,7 @@
           JSON Server deployed on Azure App Service, providing efficient data handling and real-time experience for the SafeSteer web application.
         </mat-card-content>
       </mat-card>
+
     </div>
 
     <div class="card-container">

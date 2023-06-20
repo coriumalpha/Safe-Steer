@@ -64,9 +64,10 @@
 
 .actions {
     display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    margin-top: 4em;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 2em;
+    margin-top: 5em;
 
     button {
         width: 20vw;
@@ -150,14 +151,15 @@ mat-card {
 
 .bg-dreamwave-accent.demo {
     background: #24243e; /* fallback for old browsers */
-    background: -webkit-linear-gradient(0.85turn, #24243e, #302b63, #7b1fa2);
-    background: linear-gradient(0.85turn, #24243e, #302b63, #7b1fa2);
+    background: -webkit-linear-gradient(0.3turn, #3068d1, #6a0885);
+    background: linear-gradient(0.3turn, #3068d1, #6a0885);
     cursor: pointer;
-    border-color: transparent;
+    border: none;
     min-height: 162px;
+    transition: filter 0.2s;
 
     &:hover {
-        filter: brightness(1.2);
+        filter: contrast(0.8) brightness(1.2);
 
         .inner-image {
             width: 80%;
@@ -185,8 +187,8 @@ mat-card {
 
 .dark {
     background: #24243e; /* fallback for old browsers */
-    background: -webkit-linear-gradient(0.85turn, #2a5b94, #1c1955, #250035);
-    background: linear-gradient(0.85turn, #2a5b94, #1c1955, #250035);
+    background: -webkit-linear-gradient(0.85turn, #24243e, #302b63, #7b1fa2);
+    background: linear-gradient(0.85turn, #24243e, #302b63, #7b1fa2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -201,5 +203,31 @@ img.fixed-scale {
 mat-card-subtitle {
     a {
         margin-right: 0.5em;
+    }
+}
+
+button {
+    &.demo {
+        background: -webkit-linear-gradient(to right, #4de9ee 55%, #69f0ae);
+        background: linear-gradient(to right, #4de9ee 55%, #69f0ae);
+        color: #302b63;
+    
+        &:hover {
+            color: #7b1fa2;
+        }
+    }
+
+    &.about {
+        background: -webkit-linear-gradient(to right, #302b63 55%, #7b1fa2);
+        background: linear-gradient(to right, #302b63 55%, #7b1fa2);
+        color: #4de9ee;
+    
+        &:hover {
+            color: #69f0ae;
+        }
+    }
+
+    &:hover {
+        filter: brightness(1.2);
     }
 }
