@@ -52,6 +52,14 @@
   background-clip: text;
 }
 
+.errorMessage {
+  background: -webkit-linear-gradient(to right, #b92084 55%, #8b0935);
+  background: linear-gradient(to right, #b92084 55%, #8b0935);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 h1 {
   font-size: 2.25rem;
   line-height: 1.5;
@@ -71,4 +79,16 @@ mat-chip-option:not(.mdc-evolution-chip--selected) {
 
 mat-chip-option.mdc-evolution-chip--selected {
   background: #7b1fa2;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

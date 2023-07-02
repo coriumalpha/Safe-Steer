@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Observable, combineLatest, filter, of, switchMap, take, tap } from 'rxjs';
+import { Observable, catchError, combineLatest, filter, forkJoin, of, switchMap, take, tap, throwError } from 'rxjs';
 import { Skill } from '../../models/skill.model';
 import { SkillService } from '../../services/skill.service';
 import { SkillQuery } from '../../querys/skill.query';
@@ -14,6 +14,7 @@ import { NewSkillDialogComponent } from '../../components/new-skill-dialog/new-s
 import { CategoryQuery } from '../../querys/category.query';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category.model';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-demo',
@@ -30,6 +31,7 @@ export class DemoComponent {
   selectedCategory$!: Observable<Category | null>;
   learningPath$!: Observable<LearningPath | undefined>;
   learningPathSkills$!: Observable<(Skill | undefined)[]>;
+  error: any = null;
 
   constructor(
     private skillService: SkillService,
@@ -39,23 +41,28 @@ export class DemoComponent {
     private categoryQuery: CategoryQuery,
     private learningPathService: LearningPathService,
     private learningPathQuery: LearningPathQuery,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public loadingService: LoadingService
+  ) { }
 
   ngOnInit() {
-    this.skillService.get().subscribe(() => {
-      this.skills$ = this.skillQuery.selectFilteredSkills$;
+    forkJoin([
+      this.skillService.get(),
+      this.categoryService.get(),
+      this.learningPathService.get()
+    ]).subscribe({
+      next: ([skills, categories, learningPaths]) => {
+        this.skills$ = this.skillQuery.selectFilteredSkills$;
+        this.categories$ = this.categoryQuery.selectAll();
+        this.selectedCategory$ = this.skillQuery.selectCategory;
+        this.learningPath$ = this.learningPathQuery.selectEntity(this.userLearningPath);
+        this.updateLearningPathSkills();
+      },
+      error: (err) => {
+        this.error = err;
+      }
     });
-
-    this.categoryService.get().subscribe(() => {
-      this.categories$ = this.categoryQuery.selectAll();
-      this.selectedCategory$ = this.skillQuery.selectCategory;
-    });   
-
-    this.learningPathService.get().subscribe(() => {
-      this.learningPath$ = this.learningPathQuery.selectEntity(this.userLearningPath);
-      this.updateLearningPathSkills();
-    });
-  }
+  }  
 
   updateLearningPathSkills(): void {
     this.learningPathSkills$ = this.learningPath$.pipe(
@@ -94,8 +101,14 @@ export class DemoComponent {
   }  
 
   deleteSkill(id: number): Observable<void> {
-    return this.skillService.delete(id);
-  }
+    return this.skillService.delete(id).pipe(
+      tap({
+        error: (err) => {
+          this.error = err;
+        },
+      })
+    );
+  }  
 
   createNewSkill(): void {
     this.categories$.pipe(
@@ -120,9 +133,14 @@ export class DemoComponent {
   }
   
   addSkill(skill: Skill): Observable<Skill> {
-    return this.skillService.add(skill);
+    return this.skillService.add(skill).pipe(
+      catchError((error) => {
+        this.error = error;
+        return throwError(() => error);
+      }),
+    );
   }
-
+  
   addToLearningPath(skill: Skill): void {
     this.learningPath$.pipe(
       take(1),
@@ -132,12 +150,16 @@ export class DemoComponent {
         } else {
           return of(undefined);
         }
+      }),
+      catchError((error) => {
+        this.error = error;
+        return throwError(() => error);
       })
     ).subscribe(() => {
       this.updateLearningPathSkills();
     });
   }
-
+  
   removeFromLearningPath(skill: Skill): void {
     this.learningPath$.pipe(
       take(1),
@@ -147,11 +169,16 @@ export class DemoComponent {
         } else {
           return of(undefined);
         }
+      }),
+      catchError((error) => {
+        this.error = error;
+        return throwError(() => error);
       })
     ).subscribe(() => {
       this.updateLearningPathSkills();
     });
   }
+  
 
   skillInLearningPath(skill: Skill): boolean {
     let skillInPath = false;
